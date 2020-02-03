@@ -2,6 +2,8 @@ FROM conda/miniconda3:latest
 
 LABEL maintainer="koki <k.t.the-answer@hotmail.co.jp>"
 
+RUN apt-get update
+RUN apt-get install -y wget
 RUN conda update --all -y
 RUN conda config --add channels r
 RUN conda config --add channels conda-forge
