@@ -4,3 +4,7 @@ FROM perl:5
 
 RUN cpan -i LWP::UserAgent \
 	&& cpan -i LWP::Protocol::https
+RUN apt-get update && apt-get install -y \
+    lftp \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
