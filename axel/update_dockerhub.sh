@@ -14,8 +14,8 @@ docker build -t koki/axel .
 # DockerHubに最新版をプッシュ
 docker login -u koki -p medical
 img=`docker images | grep koki/axel | awk '{print $3}'`
-docker tag $img koki/axel:20210326
-docker push koki/axel:20210326
+docker tag $img koki/axel:$(date '+%Y%m%d')
+docker push koki/axel:$(date '+%Y%m%d')
 
 # 中に入って動作確認する時用
-# docker run -it --rm koki/sctensor-experiments:20210326 /bin/bash
+# docker run -it --rm koki/sctensor-experiments:$(date '+%Y%m%d') /bin/bash

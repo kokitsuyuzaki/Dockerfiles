@@ -11,13 +11,13 @@ docker network prune
 docker system df
 
 # Dockerイメージを更新
-docker build -t koki/sctensor-experiments .
+docker build -t koki/delayedtensor-experiments .
 
 # DockerHubに最新版をプッシュ
 docker login -u koki -p medical
-img=`docker images | grep koki/sctensor-experiments | awk '{print $3}'`
-docker tag $img koki/sctensor-experiments:$(date '+%Y%m%d')
-docker push koki/sctensor-experiments:$(date '+%Y%m%d')
+img=`docker images | grep koki/delayedtensor-experiments | awk '{print $3}'`
+docker tag $img koki/delayedtensor-experiments:$(date '+%Y%m%d')
+docker push koki/delayedtensor-experiments:$(date '+%Y%m%d')
 
 # 中に入って動作確認する時用
-# docker run -it --rm koki/sctensor-experiments:$(date '+%Y%m%d') /bin/bash
+# docker run -it --rm koki/delayedtensor-experiments:$(date '+%Y%m%d') /bin/bash

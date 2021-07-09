@@ -16,8 +16,8 @@ docker build -t koki/annotationhub .
 # DockerHubに最新版をプッシュ
 docker login -u koki -p medical
 img=`docker images | grep koki/annotationhub | awk '{print $3}'`
-docker tag $img koki/annotationhub:20210323
-docker push koki/annotationhub:20210323
+docker tag $img koki/annotationhub:$(date '+%Y%m%d')
+docker push koki/annotationhub:$(date '+%Y%m%d')
 
 # 中に入って動作確認する時用
-# docker run -it --rm koki/annotationhub:20210323 /bin/bash
+# docker run -it --rm koki/annotationhub:$(date '+%Y%m%d') /bin/bash
