@@ -3,7 +3,7 @@ rm -rf ~/.docker/config.json
 
 # いらないものを適宜削除
 docker rm $(docker ps -q -a)
-docker rmi $(docker images -q)
+docker rmi $(docker images -q) -f
 docker image prune
 docker container prune
 docker volume prune

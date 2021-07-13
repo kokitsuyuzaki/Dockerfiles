@@ -5,7 +5,6 @@ FROM bioconductor/bioconductor_docker:devel
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends apt-utils \
 	libmysqlclient-dev \
-	default-libmysqlclient-dev \
 	libgdal-dev \
 	texlive \
 	texlive-latex-extra \

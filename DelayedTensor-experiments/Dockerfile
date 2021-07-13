@@ -3,7 +3,10 @@
 FROM bioconductor/bioconductor_docker:devel
 
 RUN apt-get update \
-	&& apt-get install -y --no-install-recommends apt-utils time\
+	&& apt-get install -y --no-install-recommends apt-utils \
+	libmysqlclient-dev \
+	libgdal-dev \
+	time \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* \
 	## Install Packages
