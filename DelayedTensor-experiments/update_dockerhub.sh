@@ -3,11 +3,12 @@ rm -rf ~/.docker/config.json
 
 # いらないものを適宜削除
 docker rm $(docker ps -q -a)
-docker rmi $(docker images -q)
-docker image prune
-docker container prune
-docker volume prune
-docker network prune
+docker rmi $(docker images -q) -f
+docker image prune -f
+docker container prune -f
+docker volume prune -f
+docker network prune -f
+docker builder prune -f
 docker system df
 
 # Dockerイメージを更新
