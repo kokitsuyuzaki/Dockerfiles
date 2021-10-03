@@ -12,13 +12,13 @@ docker builder prune -f
 docker system df
 
 # Dockerイメージを更新
-docker build -t koki/gzipjl .
+docker build -t koki/tensorjl .
 
 # DockerHubに最新版をプッシュ
 docker login -u koki -p medical
-img=`docker images | grep koki/gzipjl | awk '{print $3}'`
-docker tag $img koki/gzipjl:$(date '+%Y%m%d')
-docker push koki/gzipjl:$(date '+%Y%m%d')
+img=`docker images | grep koki/tensorjl | awk '{print $3}'`
+docker tag $img koki/tensorjl:$(date '+%Y%m%d')
+docker push koki/tensorjl:$(date '+%Y%m%d')
 
 # 中に入って動作確認する時用
-# docker run -it --rm koki/gzipjl:$(date '+%Y%m%d') /bin/bash
+# docker run -it --rm koki/tensorjl:$(date '+%Y%m%d') /bin/bash

@@ -10,7 +10,7 @@ RUN apt-get update \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* \
 	## Install Packages
-	&& R -e 'BiocManager::install(version = "devel", ask=FALSE); BiocManager::valid(); BiocManager::install(c("DelayedTensor","DelayedRandomArray","rTensor","ggplot2","scales","RColorBrewer","viridis","matter","einsum"), ask=FALSE)'
+	&& R -e 'BiocManager::install(version = "devel", ask=FALSE); BiocManager::valid(); BiocManager::install(c("DelayedRandomArray","rTensor","ggplot2","scales","RColorBrewer","viridis","matter","einsum"), ask=FALSE); remotes::install_github("rikenbit/DelayedTensor", force=TRUE, dependencies=TRUE, upgrade="always")'
 
 
 
