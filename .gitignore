@@ -6,6 +6,10 @@
 */*.Rmd
 */*.png
 */*.xls
+*/*.html
+*/*.pdf
 */*/*.Rmd
 */*/*.png
 */*/*.xls
+*/*/*.html
+*/*/*.pdf
