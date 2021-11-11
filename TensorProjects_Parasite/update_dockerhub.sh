@@ -12,13 +12,13 @@ docker builder prune -f
 docker system df
 
 # Dockerイメージを更新
-docker build -t koki/tensor-project-plasmids .
+docker build -t koki/tensor-projects-parasite .
 
 # DockerHubに最新版をプッシュ
 docker login -u koki
-img=`docker images | grep koki/tensor-project-plasmids | awk '{print $3}'`
-docker tag $img koki/tensor-project-plasmids:$(date '+%Y%m%d')
-docker push koki/tensor-project-plasmids:$(date '+%Y%m%d')
+img=`docker images | grep koki/tensor-projects-parasite | awk '{print $3}'`
+docker tag $img koki/tensor-projects-parasite:$(date '+%Y%m%d')
+docker push koki/tensor-projects-parasite:$(date '+%Y%m%d')
 
 # 中に入って動作確認する時用
-# docker run -it --rm koki/tensor-project-plasmids:$(date '+%Y%m%d') bash
+# docker run -it --rm koki/tensor-projects-parasite:$(date '+%Y%m%d') bash

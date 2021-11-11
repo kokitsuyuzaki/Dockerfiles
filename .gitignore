@@ -1,0 +1,11 @@
+.fuse*
+*/.fuse*
+*/*/.fuse*
+*/*/*/.fuse*
+*/*/*/*/.fuse*
+*/*.Rmd
+*/*.png
+*/*.xls
+*/*/*.Rmd
+*/*/*.png
+*/*/*.xls
