@@ -4,10 +4,8 @@ FROM rocker/rstudio:devel
 
 ADD pone.0116437.s004.xls /home/rstudio
 ADD MeSH-Flowchart_FINAL.png /home/rstudio
-ADD FileS1_v4_html.Rmd /home/rstudio
-ADD FileS1_v4_pdf.Rmd /home/rstudio
-ADD FileS1_v4_pdf.pdf /home/rstudio
-ADD FileS1_v4_html.html /home/rstudio
+ADD FileS1_v4.Rmd /home/rstudio
+ADD FileS1_v4.html /home/rstudio
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends apt-utils \
@@ -21,6 +19,7 @@ RUN apt-get update \
 	texi2html \
 	texinfo \
 	lmodern \
+	pandoc \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* \
 	## Install Packages
