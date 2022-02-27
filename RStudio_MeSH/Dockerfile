@@ -4,7 +4,7 @@ FROM rocker/rstudio:devel
 
 ADD pone.0116437.s004.xls /home/rstudio
 ADD MeSH-Flowchart_FINAL.png /home/rstudio
-ADD FileS1_v4.Rmd /home/rstudio
+ADD FileS1.Rmd /home/rstudio
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends apt-utils \
