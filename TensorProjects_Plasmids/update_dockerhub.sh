@@ -16,9 +16,10 @@ docker build -t koki/tensor-projects-plasmids .
 
 # DockerHubに最新版をプッシュ
 docker login -u koki
-img=`docker images | grep koki/tensor-projects-plasmids | awk '{print $3}'`
+docker push koki/tensor-projects-plasmids:latest
+img=`docker images | grep koki/tensor-projects-plasmids | grep latest | awk '{print $3}'`
 docker tag $img koki/tensor-projects-plasmids:$(date '+%Y%m%d')
 docker push koki/tensor-projects-plasmids:$(date '+%Y%m%d')
 
 # 中に入って動作確認する時用
-# docker run -it --rm koki/tensor-projects-plasmids:$(date '+%Y%m%d') bash
+# docker run -it --rm koki/tensor-projects-plasmids:latest bash

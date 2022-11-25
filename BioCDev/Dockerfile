@@ -16,4 +16,10 @@ RUN apt-get update \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* \
 	## Install Packages
-	&& R -e 'BiocManager::install(version = "devel"); BiocManager::valid(); BiocManager::install(c("BiocCheck", "AnnotationHubData", "Homo.sapiens", "reactome.db", "RUnit", "graphite", "scTGIF", "ggplot2", "VennDiagram", "AHLRBaseDbs", "AHMeSHDbs", "AHPubMedDbs", "DelayedTensor", "scTensor"), ask=FALSE)'
+	&& R -e 'BiocManager::install(version = "devel"); \
+	    BiocManager::valid(); \
+	    BiocManager::install(c("BiocCheck", "AnnotationHubData", \
+	    "Homo.sapiens", "reactome.db", "RUnit", "graphite", "scTGIF", \
+	    "ggplot2", "VennDiagram", "AHLRBaseDbs", "AHMeSHDbs", \
+	    "AHPubMedDbs", "DelayedTensor", "scTensor", "schex", \
+	    "msigdbr", "tagcloud", "BiocStyle", "nnTensor"), ask=FALSE)'

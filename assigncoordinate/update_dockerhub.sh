@@ -15,10 +15,11 @@ docker system df
 docker build -t koki/assigncoordinate .
 
 # DockerHubに最新版をプッシュ
-docker login -u koki -p medical
-img=`docker images | grep koki/assigncoordinate | awk '{print $3}'`
+docker login -u koki
+docker push koki/assigncoordinate:latest
+img=`docker images | grep koki/assigncoordinate | grep latest | awk '{print $3}'`
 docker tag $img koki/assigncoordinate:$(date '+%Y%m%d')
 docker push koki/assigncoordinate:$(date '+%Y%m%d')
 
 # 中に入って動作確認する時用
-# docker run -it --rm koki/sctensor-experiments:$(date '+%Y%m%d') /bin/bash
+# docker run -it --rm koki/assigncoordinate:latest bash

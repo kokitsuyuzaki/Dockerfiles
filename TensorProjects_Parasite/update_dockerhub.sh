@@ -16,9 +16,10 @@ docker build -t koki/tensor-projects-parasite .
 
 # DockerHubに最新版をプッシュ
 docker login -u koki
-img=`docker images | grep koki/tensor-projects-parasite | awk '{print $3}'`
+docker push koki/tensor-projects-parasite:latest
+img=`docker images | grep koki/tensor-projects-parasite | grep latest | awk '{print $3}'`
 docker tag $img koki/tensor-projects-parasite:$(date '+%Y%m%d')
 docker push koki/tensor-projects-parasite:$(date '+%Y%m%d')
 
 # 中に入って動作確認する時用
-# docker run -it --rm koki/tensor-projects-parasite:$(date '+%Y%m%d') bash
+# docker run -it --rm koki/tensor-projects-parasite:latest bash

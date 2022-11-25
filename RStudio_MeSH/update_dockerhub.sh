@@ -16,9 +16,10 @@ docker build -t koki/rstudio_mesh .
 
 # DockerHubに最新版をプッシュ
 docker login -u koki
-img=`docker images | grep koki/rstudio_mesh | awk '{print $3}'`
+docker push koki/rstudio_mesh:latest
+img=`docker images | grep koki/rstudio_mesh | grep latest | awk '{print $3}'`
 docker tag $img koki/rstudio_mesh:$(date '+%Y%m%d')
 docker push koki/rstudio_mesh:$(date '+%Y%m%d')
 
 # 中に入って動作確認する時用
-# docker run -it --rm koki/rstudio_mesh:$(date '+%Y%m%d') bash
+# docker run -it --rm koki/rstudio_mesh:latest bash

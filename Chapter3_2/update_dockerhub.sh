@@ -15,10 +15,11 @@ docker system df
 docker build -t koki/chapter3_2 .
 
 # DockerHubに最新版をプッシュ
-sudo docker login -u koki
-img=`sudo docker images | grep koki/chapter3_2 | awk '{print $3}'`
-sudo docker tag $img koki/chapter3_2:$(date '+%Y%m%d')
-sudo docker push koki/chapter3_2:$(date '+%Y%m%d')
+docker login -u koki
+docker push koki/chapter3_2:latest
+img=`docker images | grep koki/chapter3_2 | grep latest | awk '{print $3}'`
+docker tag $img koki/chapter3_2:$(date '+%Y%m%d')
+docker push koki/chapter3_2:$(date '+%Y%m%d')
 
 # 中に入って動作確認する時用
-# docker run -it --rm koki/sctensor-experiments:$(date '+%Y%m%d') /bin/bash
+# docker run -it --rm koki/chapter3_2:latest bash

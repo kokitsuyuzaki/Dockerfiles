@@ -12,14 +12,14 @@ docker builder prune -f
 docker system df
 
 # Dockerイメージを更新
-docker build -t koki/biocdev .
+docker build -t koki/velocyto .
 
 # DockerHubに最新版をプッシュ
 docker login -u koki
-docker push koki/biocdev:latest
-img=`docker images | grep koki/biocdev | grep latest | awk '{print $3}'`
-docker tag $img koki/biocdev:$(date '+%Y%m%d')
-docker push koki/biocdev:$(date '+%Y%m%d')
+docker push koki/velocyto:latest
+img=`docker images | grep koki/velocyto | grep latest | awk '{print $3}'`
+docker tag $img koki/velocyto:$(date '+%Y%m%d')
+docker push koki/velocyto:$(date '+%Y%m%d')
 
 # 中に入って動作確認する時用
-# docker run -it --rm koki/biocdev:latest bash
+# docker run -it --rm koki/velocyto:latest bash

@@ -15,10 +15,11 @@ docker system df
 docker build -t koki/delayedtensor-experiments .
 
 # DockerHubに最新版をプッシュ
-docker login -u koki -p medical
-img=`docker images | grep koki/delayedtensor-experiments | awk '{print $3}'`
+docker login -u koki
+docker push koki/delayedtensor-experiments:latest
+img=`docker images | grep koki/delayedtensor-experiments | grep latest | awk '{print $3}'`
 docker tag $img koki/delayedtensor-experiments:$(date '+%Y%m%d')
 docker push koki/delayedtensor-experiments:$(date '+%Y%m%d')
 
 # 中に入って動作確認する時用
-# docker run -it --rm koki/delayedtensor-experiments:$(date '+%Y%m%d') /bin/bash
+# docker run -it --rm koki/delayedtensor-experiments:latest bash

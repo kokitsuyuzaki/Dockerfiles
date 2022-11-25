@@ -16,9 +16,10 @@ docker build -t koki/bindsc .
 
 # DockerHubに最新版をプッシュ
 docker login -u koki
-img=`docker images | grep koki/bindsc | awk '{print $3}'`
+docker push koki/bindsc:latest
+img=`docker images | grep koki/bindsc | grep latest | awk '{print $3}'`
 docker tag $img koki/bindsc:$(date '+%Y%m%d')
 docker push koki/bindsc:$(date '+%Y%m%d')
 
 # 中に入って動作確認する時用
-# docker run -it --rm koki/bindsc:$(date '+%Y%m%d') bash
+# docker run -it --rm koki/bindsc:latest bash

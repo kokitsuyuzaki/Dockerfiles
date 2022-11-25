@@ -15,10 +15,11 @@ docker system df
 docker build -t koki/annotationhub .
 
 # DockerHubに最新版をプッシュ
-docker login -u koki -p medical
-img=`docker images | grep koki/annotationhub | awk '{print $3}'`
+docker login -u koki
+docker push koki/annotationhub:latest
+img=`docker images | grep koki/annotationhub | grep latest | awk '{print $3}'`
 docker tag $img koki/annotationhub:$(date '+%Y%m%d')
 docker push koki/annotationhub:$(date '+%Y%m%d')
 
 # 中に入って動作確認する時用
-# docker run -it --rm koki/annotationhub:$(date '+%Y%m%d') /bin/bash
+# docker run -it --rm koki/annotationhub:latest bash

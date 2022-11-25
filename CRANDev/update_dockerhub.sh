@@ -16,9 +16,10 @@ docker build -t koki/crandev .
 
 # DockerHubに最新版をプッシュ
 docker login -u koki
-img=`docker images | grep koki/crandev | awk '{print $3}'`
+docker push koki/crandev:latest
+img=`docker images | grep koki/crandev | grep latest | awk '{print $3}'`
 docker tag $img koki/crandev:$(date '+%Y%m%d')
 docker push koki/crandev:$(date '+%Y%m%d')
 
 # 中に入って動作確認する時用
-# docker run -it --rm koki/crandev:$(date '+%Y%m%d') bash
+# docker run -it --rm koki/crandev:latest bash
