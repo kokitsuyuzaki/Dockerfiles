@@ -2,4 +2,9 @@
 # https://www.bioconductor.org/help/docker/
 FROM rocker/r-devel:latest
 
-RUN R -e 'install.packages(c("testthat", "mwTensor", "ttTensor", "gcTensor"), repos="http://cran.r-project.org", type="source")'
+RUN apt-get update \
+	&& apt-get install -y --no-install-recommends pandoc \
+	&& apt-get clean \
+	&& rm -rf /var/lib/apt/lists/* \
+	## Install Packages
+	&& R -e 'install.packages("BiocManager", repos="http://cran.r-project.org", type="source"); BiocManager::install(c("irlba", "mixOmics", "testthat", "knitr", "rmarkdown", "mwTensor", "ttTensor", "gcTensor", "nnTensor", "iTensor", "ccTensor", "dcTensor", "guidedPLS", "Vicus"))'

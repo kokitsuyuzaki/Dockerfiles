@@ -1,8 +1,8 @@
-FROM bioconductor/bioconductor_docker:RELEASE_3_15
+FROM bioconductor/bioconductor_docker:RELEASE_3_16
 
-RUN R -e 'BiocManager::install(version = "3.15"); \
+RUN R -e 'BiocManager::install(version = "3.16"); \
     BiocManager::valid(); \
-    BiocManager::install(c("multtest", "metap", "xlsx", "R.utils", \
+    BiocManager::install(c("multtest", "metap", "readxl", "writexl", "R.utils", \
     "velociraptor", "pcaMethods", "DelayedArray", \
     "DelayedMatrixStats", "limma", "lme4", "S4Vectors", \
     "SingleCellExperiment", "SummarizedExperiment", "batchelor", \
