@@ -1,7 +1,10 @@
-FROM condaforge/mambaforge:23.1.0-1
+FROM bioconductor/bioconductor_docker:RELEASE_3_17
 
-RUN mamba install -c r -c conda-forge -c bioconda python=3.10 snakemake numpy scipy numba cython jupyter ipython multiprocess boost==1.74 matplotlib mpmath r-essentials r-base -y && \
-    pip install coniii && \
-    python -c "import coniii; import snakemake; import sys; import numpy as np; import numba; import cython; import jupyter; import multiprocess; import matplotlib; import mpmath" && \
-    ipython -V && \
-    R -e "install.packages('dcTensor', repos='https://cloud.r-project.org', type='source'); library('dcTensor')"
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends xserver-xorg x11-apps && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    pip install snakemake && \
+    R -e "BiocManager::install(version = '3.17', ask=FALSE); BiocManager::valid(); BiocManager::install(c('IsingSampler', 'igraph', 'tagcloud', 'tidyverse', 'RColorBrewer', 'akima', 'spatstat', 'magick', 'cowplot', 'dendextend', 'GGally', 'Rcpp', 'viridis', 'mclust', 'patchwork')); library('IsingSampler'); library('igraph'); library('tagcloud'); library('tidyverse'); library('RColorBrewer'); library('akima'); library('spatstat'); library('magick'); library('cowplot'); library('dendextend'); library('GGally'); library('Rcpp'); library('viridis'); library('mclust'); library('patchwork')" && \
+    python3 -c "import sys; import numpy as np" && \
+    snakemake -v
