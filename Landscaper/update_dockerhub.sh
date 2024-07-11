@@ -11,15 +11,30 @@ docker network prune -f
 docker builder prune -f
 docker system df
 
-# Dockerイメージを更新
-docker build -t koki/landscaper_component .
+# Docker build
+docker build -t koki/landscaper_component:latest .
 
-# DockerHubに最新版をプッシュ
+# Docker push（DockerHub）
 docker login -u koki
 docker push koki/landscaper_component:latest
 img=`docker images | grep koki/landscaper_component | grep latest | awk '{print $3}'`
 docker tag $img koki/landscaper_component:$(date '+%Y%m%d')
 docker push koki/landscaper_component:$(date '+%Y%m%d')
 
+# Docker push（GHCR）
+docker tag $img ghcr.io/chiba-ai-med/landscaper_component:$(date '+%Y%m%d')
+docker push ghcr.io/chiba-ai-med/landscaper_component:$(date '+%Y%m%d')
+
+# マルチアーキテクチャ対応
+# docker buildx create --use
+# docker buildx inspect --bootstrap
+
+# Docker build/push（DockerHub）
+docker buildx build --platform linux/amd64,linux/arm64 -t koki/landscaper_component:latest -t koki/landscaper_component:$(date '+%Y%m%d') --push .
+
+# Docker build/push（GHCR）
+docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/chiba-ai-med/landscaper_component:latest -t ghcr.io/chiba-ai-med/landscaper_component:$(date '+%Y%m%d') --push .
+
 # 中に入って動作確認する時用
 # docker run -it --rm koki/landscaper_component:latest bash
+# docker run -it --rm ghcr.io/chiba-ai-med/landscaper_component:latest bash

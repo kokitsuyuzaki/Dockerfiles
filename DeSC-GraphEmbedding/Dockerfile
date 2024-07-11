@@ -1,9 +1,12 @@
-FROM continuumio/anaconda3:latest
+FROM continuumio/miniconda3:23.10.0-1
 
-RUN conda install -y -c conda-forge r-devtools r-fields r-tagcloud r-igraph r-ggplot2 r-patchwork r-reshape2 r-umap && \
+RUN conda config --remove channels defaults && \
+    conda config --append channels conda-forge && \
+    conda install -y --override-channels -c conda-forge r-devtools r-fields r-tagcloud r-igraph r-ggplot2 r-patchwork r-reshape2 r-umap gcc gxx && \
     R -e "devtools::install_github('rikenbit/dcTensor'); library('dcTensor'); library('igraph'); library('ggplot2'); library('patchwork'); library('umap'); library('reshape2')" && \
     # Deepwalk Install
     pip install deepwalk && \
+    pip install scipy==1.12 && \
     cd /opt/conda/lib/python3.11/site-packages/deepwalk && \
     head -13 graph.py > tmp && \
     echo "from collections import defaultdict" >> tmp && \
