@@ -1,5 +1,31 @@
-FROM bioconductor/bioconductor_docker:RELEASE_3_19
+# Stage 1: Julia Environment
+FROM julia:1.7.0-rc1-buster AS julia-stage
 
+## Dependent Julia Packages
+ENV JULIA_DEPOT_PATH="/julia_packages/"
+RUN julia -e 'import Pkg; Pkg.add("GLM"); Pkg.add("SparseArrays"); Pkg.add("DataFrames"); Pkg.add("MatrixMarket")'
+
+## Stage 2: R Environment
+FROM bioconductor/bioconductor_docker:RELEASE_3_19 AS r-stage
+
+## Shell type
+SHELL ["/bin/bash", "-l", "-c"]
+
+## Copy Julia Command
+RUN mkdir /julia_bin
+COPY --from=julia-stage /usr/local/julia /julia_bin/
+
+## Copy Dependent Julia Packages
+RUN mkdir /julia_packages
+COPY --from=julia-stage /julia_packages/ /julia_packages/
+
+## Julia Packages' Path
+ENV JULIA_DEPOT_PATH="/julia_packages/"
+
+## Check
+RUN /julia_bin/bin/julia -e 'using GLM; using SparseArrays; using DataFrames; using MatrixMarket'
+
+# Dependent Packages
 RUN apt-get update && \
     apt-get install -y --no-install-recommends xserver-xorg x11-apps && \
     apt-get clean && \

@@ -1,6 +1,6 @@
 # This docker image has LaTeX to build the vignettes
 # https://www.bioconductor.org/help/docker/
-FROM bioconductor/bioconductor_docker:RELEASE_3_15
+FROM bioconductor/bioconductor_docker:RELEASE_3_20
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends apt-utils \
@@ -16,7 +16,4 @@ RUN apt-get update \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* \
 	## Install Packages
-	&& R -e 'BiocManager::install(version = "3.15"); BiocManager::valid(); BiocManager::install(c("tximport", "edgeR", "DESeq2", "xlsx", "ggplot2", "VennDiagram", "tagcloud"), ask=FALSE)'
-
-
-
+	&& R -e 'BiocManager::install(version = "3.20"); BiocManager::valid(); BiocManager::install(c("tximport", "edgeR", "DESeq2", "xlsx", "openxlsx", "ggplot2", "VennDiagram", "tagcloud"), ask=FALSE); '
