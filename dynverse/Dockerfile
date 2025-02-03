@@ -17,5 +17,5 @@ RUN apt-get update && \
     #############################################
     apt update && \
     apt-get install -y r-base libssl-dev libcurl4-openssl-dev libfontconfig1-dev libharfbuzz-dev libfribidi-dev libopenblas-dev libhdf5-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev fuse-overlayfs && \
-    R -e 'install.packages(c("igraph", "hdf5r", "tidyverse", "Seurat", "devtools"), repos="https://cloud.r-project.org"); devtools::install_github("dynverse/dyno", upgrade = TRUE); library("igraph"); library("hdf5r"); library("tidyverse"); library("Seurat"); library("dyno")' && \
+    R -e 'install.packages(c("igraph", "hdf5r", "tidyverse", "Seurat", "devtools", "hexbin"), repos="https://cloud.r-project.org"); devtools::install_github("dynverse/dyno", upgrade = TRUE); library("igraph"); library("hdf5r"); library("tidyverse"); library("Seurat"); library("hexbin"); library("dyno")' && \
     singularity --version
